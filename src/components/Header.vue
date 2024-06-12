@@ -1,7 +1,5 @@
 <script setup lang="ts">
-defineProps<{
-  msg: string
-}>()
+
 </script>
 
 <template>
@@ -13,7 +11,6 @@ defineProps<{
           </path>
         </svg></a>
       <ul class="header__List">
-        <li><a name="/documentation" class="header__Link nav-item__primary" href="/documentation">Docs</a></li>
         <li><a name="/about" class="header__Link nav-item__primary" href="/about">About</a></li>
       </ul>
     </nav>
@@ -82,6 +79,10 @@ svg:not(:root) {
 .header__Link {
   color: rgb(51, 51, 51);
   border: none;
+}
+
+a:hover, a:focus{
+  color:rgb(255, 152, 0);
 }
 
 </style>

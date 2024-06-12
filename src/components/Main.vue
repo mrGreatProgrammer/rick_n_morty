@@ -1,56 +1,39 @@
 <script lang="ts">
-// import WelcomeItem from './WelcomeItem.vue'
-import DocumentationIcon from './icons/IconDocumentation.vue'
-import ToolingIcon from './icons/IconTooling.vue'
-import EcosystemIcon from './icons/IconEcosystem.vue'
-import CommunityIcon from './icons/IconCommunity.vue'
-import SupportIcon from './icons/IconSupport.vue'
 import CardItem from './CardItem.vue'
-import { ref, onMounted } from 'vue'
-import axios from 'axios'
-import { CardItemType } from '../types/appTypes';
-import {useCounterStore} from '../stores/counter.ts';
+import Pagination from './forms/Pagination.vue'
+import { onMounted, watch } from 'vue'
+import { useCounterStore } from '../stores/counter.ts';
+import FilterForm from './forms/FilterForm.vue'
 
 
 export default {
   components: {
-    CardItem
-    },
-    
-    setup() {
+    CardItem,
+    FilterForm,
+    Pagination,
+  },
+
+  setup() {
     const createCounterStore = useCounterStore();
 
-    // const fetchCharacters = async () => {
-    //   try {
-    //     const response = await axios.get<{results:CardItemType[]}>(`https://rickandmortyapi.com/api/character`)
-    //     characters.value = response.data.results
-    //   } catch (error) {
-    //     console.error(error)
-    //   }
-    // }
+    watch(() => [createCounterStore.currentPage, createCounterStore.name, createCounterStore.status], (p) => {
+      console.log(p);
 
-    onMounted(() => {createCounterStore.fetchCharacters();
-
-      console.log("aaa", createCounterStore.characters);
-      
+      createCounterStore.fetchCharacters();
     });
-
 
     return {
       createCounterStore
     }
   }
-
-  
 }
-
-// console.log(characters);
 
 
 </script>
 
 <template>
   <main class="layout__Main">
+    <FilterForm />
     <section class="hero__Wrapper">
       <h1 class="hero__Title">The Rick and Morty API</h1>
       <div class="hero-image"><svg width="378" height="376" viewBox="0 0 378 376" fill="none">
@@ -67,9 +50,10 @@ export default {
     </section>
     <section class="showcase__Wrapper">
       <div class="showcase__Inner">
-          <CardItem v-for="(item, index) in createCounterStore.characters" :key="index" :card="item" />
+        <CardItem v-for="(item, index) in createCounterStore.characters" :key="index" :card="item" />
       </div>
     </section>
+    <Pagination />
   </main>
 </template>
 
@@ -79,55 +63,56 @@ export default {
 }
 
 .hero__Wrapper {
-    display: flex;
-    -webkit-box-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    align-items: center;
-    flex-direction: column;
-    height: calc(-60px + 50vh);
-    text-align: center;
-    position: relative;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  flex-direction: column;
+  height: calc(-60px + 50vh);
+  text-align: center;
+  position: relative;
 }
 
 .showcase__Wrapper {
-    display: flex;
-    -webkit-box-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    align-items: center;
-    padding: 4.5rem 0px;
-    background: rgb(39, 43, 51);
-    min-height: calc(-60px + 50vh);
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 4.5rem 0px;
+  background: rgb(39, 43, 51);
+  min-height: calc(-60px + 50vh);
 }
 
 .showcase__Inner {
-    display: flex;
-    -webkit-box-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    align-items: center;
-    flex-wrap: wrap;
-    max-width: 1920px;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1920px;
 }
 
 .hero__Title {
-    margin: 0px;
-    color: rgb(32, 35, 41);
-    border: none;
-    font-weight: 900;
-    z-index: 1;
-    font-size: 5.625rem;
+  margin: 0px;
+  color: rgb(32, 35, 41);
+  border: none;
+  font-weight: 900;
+  z-index: 1;
+  font-size: 5.625rem;
 }
 
 .hero__Wrapper .hero-image {
-    position: absolute;
-    width: 100%;
-    height: 100%;
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
+
 .hero__Wrapper .hero-image svg {
-    width: 100%;
-    height: 100%;
-    fill: rgb(245, 245, 245);
+  width: 100%;
+  height: 100%;
+  fill: rgb(245, 245, 245);
 }
 </style>

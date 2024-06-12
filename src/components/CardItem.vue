@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { CardItemType } from '../types/appTypes';
 
-
 const data = defineProps({
   card: {
     type: Object as () => CardItemType,
@@ -9,32 +8,22 @@ const data = defineProps({
   }
 })
 
-// export default {
-//   props: {
-//     card: {
-//       type: Object,
-//       required: true
-//     }
-//   }
-// }
-console.log(data.card)
-
 </script>
 
 <template>
   <article class="characterCard__Wrapper">
     <div class="characterCard__ImgWrapper"><img :src="data.card.image" alt="Ghost in a Jar" /></div>
     <div class="characterCard__ContentWrapper">
-      <div class="section"><a href="https://rickandmortyapi.com/api/character/141" rel="noopener noreferrer"
+      <div class="section"><a href="data.card.url" rel="noopener noreferrer"
           target="_blank" class="externalLink__ExternalLink">
           <h2>{{ data.card.name }} fa</h2>
-        </a><span class="status"><span class="status__icon"></span> Dead - Alien</span></div>
+        </a><span class="status"><span class="status__icon"></span> {{ data.card.status }} - {{data.card.species}}</span></div>
       <div class="section"><span class="text-gray">Last known location:</span><a
-          href="https://rickandmortyapi.com/api/location/20" rel="noopener noreferrer" target="_blank"
-          class="externalLink__ExternalLink">Earth (Replacement Dimension)</a></div>
+          href="data.card.location.url" rel="noopener noreferrer" target="_blank"
+          class="externalLink__ExternalLink">{{data.card.location.name}}</a></div>
       <div class="section"><span class="text-gray">First seen in:</span><a
-          href="https://rickandmortyapi.com/api/episode/15" rel="noopener noreferrer" target="_blank"
-          class="externalLink__ExternalLink">Total Rickall</a></div>
+          href="data.card.origin.url" rel="noopener noreferrer" target="_blank"
+          class="externalLink__ExternalLink">{{data.card.origin.name}}</a></div>
     </div>
   </article>
 </template>

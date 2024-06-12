@@ -1,17 +1,27 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import axios from 'axios'
+import type { CardItemType, paginationType } from '@/types/appTypes'
+import { urlSearchParamsToObj } from '@/utils/urlUtils'
 
 export const useCounterStore = defineStore('counter', () => {
-  const count = ref(0)
+  const currentPage = ref("1")
+  const name = ref("")
+  const status = ref("")
   const loading = ref(false)
-  const characters = ref([])
-  const info = ref(null)
+  const characters = ref<CardItemType[]>([])
+  const info = ref<paginationType|null>(null)
 
 
-  const doubleCount = computed(() => count.value * 2)
-  function increment() {
-    count.value++
+  // const doubleCount = computed(() => currentPage.value * 2)
+  function setCurrentPage(v:string) {
+    currentPage.value=v
+  }
+  function setName(v:string) {
+    name.value=v
+  }
+  function setStatus(v:string) {
+    status.value=v
   }
 
 
@@ -19,8 +29,8 @@ export const useCounterStore = defineStore('counter', () => {
   async function fetchCharacters() {
     try {
         loading.value = true;
-
-        const response = await axios.get<{results:CardItemType[]}>(`https://rickandmortyapi.com/api/character`);
+        const url = urlSearchParamsToObj()
+        const response = await axios.get<{results:CardItemType[]; info:any}>(`https://rickandmortyapi.com/api/character`, {params:url});
 
         characters.value = await response.data.results;
         info.value = await response.data.info;
@@ -33,5 +43,5 @@ export const useCounterStore = defineStore('counter', () => {
 }
 
 
-  return { count, doubleCount, increment, fetchCharacters, characters, info }
+  return { currentPage, setCurrentPage, /*doubleCount,*/ fetchCharacters, characters, info, status, setStatus, name, setName }
 })

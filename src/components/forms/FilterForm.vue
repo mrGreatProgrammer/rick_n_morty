@@ -19,6 +19,10 @@ export default {
       updateURL({ ...url, status: value })
     }
 
+    const onClick = ()=>{
+      createCounterStore.fetchCharacters();
+    }
+
     onMounted(() => {
       // @ts-ignore
       createCounterStore.setStatus(url.status)
@@ -29,7 +33,8 @@ export default {
     return {
       createCounterStore,
       onChangeName,
-      onChangeStatus
+      onChangeStatus,
+      onClick
     }
   }
 }
@@ -45,6 +50,7 @@ export default {
       <option value="Dead">Dead</option>
       <option value="Alive">Alive</option>
     </select>
+    <button class="btn" @click="onClick" >FILTER</button>
   </div>
 </template>
 
@@ -82,4 +88,21 @@ export default {
   border: 1px solid rgb(255, 152, 0);
   outline: 1px solid rgb(255, 152, 0);
 }
+
+  .btn {
+    font-size: 18px;
+    padding: 8px 25px;
+    margin-right: 15px;
+    color: white;
+    border-radius: 4px;
+    background: rgb(255, 152, 0);
+    border: 1px solid rgb(255, 152, 0);
+  }
+  
+  .btn:focus {
+    border: 1px solid rgb(255, 152, 0);
+    outline: 3px solid rgb(255, 152, 0);
+  }
+
+
 </style>

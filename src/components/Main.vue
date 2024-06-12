@@ -16,9 +16,10 @@ export default {
   setup() {
     const createCounterStore = useCounterStore();
 
-    watch(() => [createCounterStore.currentPage, createCounterStore.name, createCounterStore.status], (p) => {
-      console.log(p);
-
+    // watch(() => [createCounterStore.currentPage, createCounterStore.name, createCounterStore.status], (p) => {
+    //   createCounterStore.fetchCharacters();
+    // });
+    onMounted(() =>{
       createCounterStore.fetchCharacters();
     });
 

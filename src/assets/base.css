@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: rgb(32, 35, 41);
+  font-variant-ligatures: none;
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+  text-decoration-skip-ink: auto;
+
+  font: 112.5% / 1.625 -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto",
+    "Helvetica", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+}
+
+.text-gray {
+  color: rgb(158, 158, 158);
+}
+
+li {
+  list-style: none;
+}
+
+header,
+main {
+  background: rgb(255, 255, 255);
+}
+
+a,
+button {
+  text-decoration: none;
+  transition: all 0.1s ease 0s;
+}
+
+a:hover,
+a:focus {
+  color: rgb(255, 152, 0);
+}

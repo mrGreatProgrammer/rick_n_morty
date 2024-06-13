@@ -43,5 +43,5 @@ export const useCounterStore = defineStore('counter', () => {
 }
 
 
-  return { currentPage, setCurrentPage, /*doubleCount,*/ fetchCharacters, characters, info, status, setStatus, name, setName }
+  return { currentPage, setCurrentPage, /*doubleCount,*/ fetchCharacters, characters, info, status, setStatus, name, setName, loading }
 })

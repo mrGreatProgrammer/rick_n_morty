@@ -3,6 +3,7 @@ import CardItem from './CardItem.vue'
 import Pagination from './forms/Pagination.vue'
 import { onMounted, watch } from 'vue'
 import FilterForm from './forms/FilterForm.vue'
+// @ts-ignore
 import Loader from './loader/Loader.vue'
 import { useCounterStore } from '../stores/counter';
 

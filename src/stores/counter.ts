@@ -6,8 +6,8 @@ import { urlSearchParamsToObj } from '@/utils/urlUtils'
 
 export const useCounterStore = defineStore('counter', () => {
   const currentPage = ref("1")
-  const name = ref("")
-  const status = ref("")
+  const name = ref<string|null>("")
+  const status = ref<string|null>("")
   const loading = ref(false)
   const characters = ref<CardItemType[]>([])
   const info = ref<paginationType|null>(null)
@@ -17,10 +17,10 @@ export const useCounterStore = defineStore('counter', () => {
   function setCurrentPage(v:string) {
     currentPage.value=v
   }
-  function setName(v:string) {
+  function setName(v:string|null) {
     name.value=v
   }
-  function setStatus(v:string) {
+  function setStatus(v:string|null) {
     status.value=v
   }
 

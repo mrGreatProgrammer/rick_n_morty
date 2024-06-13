@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CardItemType } from '../types/appTypes';
+import type { CardItemType } from '../types/appTypes';
 
 const data = defineProps({
   card: {
@@ -20,10 +20,10 @@ const data = defineProps({
         </a><span class="status"><span class="status__icon"></span> {{ data.card.status }} - {{data.card.species}}</span></div>
       <div class="section"><span class="text-gray">Last known location:</span><a
           href="data.card.location.url" rel="noopener noreferrer" target="_blank"
-          class="externalLink__ExternalLink">{{data.card.location.name}}</a></div>
+          class="externalLink__ExternalLink">{{data.card.location?.name}}</a></div>
       <div class="section"><span class="text-gray">First seen in:</span><a
           href="data.card.origin.url" rel="noopener noreferrer" target="_blank"
-          class="externalLink__ExternalLink">{{data.card.origin.name}}</a></div>
+          class="externalLink__ExternalLink">{{data.card.origin?.name}}</a></div>
     </div>
   </article>
 </template>

@@ -2,7 +2,7 @@
 import CardItem from './CardItem.vue'
 import Pagination from './forms/Pagination.vue'
 import { onMounted, watch } from 'vue'
-import { useCounterStore } from '../stores/counter.ts';
+import { useCounterStore } from '../stores/counter';
 import FilterForm from './forms/FilterForm.vue'
 
 
@@ -16,9 +16,9 @@ export default {
   setup() {
     const createCounterStore = useCounterStore();
 
-    // watch(() => [createCounterStore.currentPage, createCounterStore.name, createCounterStore.status], (p) => {
-    //   createCounterStore.fetchCharacters();
-    // });
+    watch(() => [createCounterStore.currentPage], (p) => {
+      createCounterStore.fetchCharacters();
+    });
     onMounted(() =>{
       createCounterStore.fetchCharacters();
     });

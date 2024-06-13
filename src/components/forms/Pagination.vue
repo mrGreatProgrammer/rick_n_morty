@@ -3,27 +3,32 @@
 import { onMounted } from 'vue';
 import { useCounterStore } from '../../stores/counter';
 import { updateURL, urlSearchParamsToObj } from '../../utils/urlUtils'
+// @ts-ignore
+import Paginate from 'vuejs-paginate-next'
 
 
 export default {
+    components:{
+        Paginate
+    },
     setup() {
         const createCounterStore = useCounterStore();
         const url = urlSearchParamsToObj()
 
         const onChangePagination = (p: string) => {
             createCounterStore.setCurrentPage(p)
-            updateURL({ ...url, currentPage: p })
+            updateURL({ ...url, page: p })
         }
 
 
         onMounted(() => {
             // @ts-ignore
-            createCounterStore.setCurrentPage(url.currentPage)
+            createCounterStore.setCurrentPage(url.page)
         })
 
         return {
             createCounterStore,
-            onChangePagination
+            onChangePagination,
         }
     }
 
@@ -32,11 +37,28 @@ export default {
 </script>
 
 <template>
-    <div class="pagination-container">
+    
+    <Paginate
+    v-model="createCounterStore.currentPage"
+    :page-count="createCounterStore?.info?.pages"
+    :page-range="4"
+    :margin-pages="4"
+    :click-handler="onChangePagination"
+    :prev-text="'Prev'"
+    :next-text="'Next'"
+    :container-class="'pagination-container'"
+    :page-class="'pagination-btn'"
+    active-class="pagination-active"
+    next-class="pagination-btn"
+    prev-class="pagination-btn"
+  />
+
+
+    <!-- <div class="pagination-container">
         <button v-for="(item) in createCounterStore?.info?.pages" :key="item" class="pagination-btn"
             :class="{ active: createCounterStore.currentPage == item }" @click="onChangePagination(item)">{{ item
-            }}</button>
-    </div>
+            }}</button> -->
+    <!-- </div> -->
 </template>
 
 <style scoped>

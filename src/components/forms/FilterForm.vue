@@ -1,6 +1,6 @@
 <script lang="ts">
 import { updateURL, urlSearchParamsToObj } from '@/utils/urlUtils.js';
-import { useCounterStore } from '../../stores/counter.ts';
+import { useCounterStore } from '../../stores/counter';
 import { onMounted } from 'vue';
 
 
@@ -9,13 +9,19 @@ export default {
   setup() {
     const createCounterStore = useCounterStore();
     const url = urlSearchParamsToObj()
-    const onChangeName = (value: string) => {
+    const onChangeName = (eventTarget: EventTarget | null) => {
+      // @ts-ignore
+      let value = eventTarget.value
       createCounterStore.setName(value);
+      createCounterStore.setCurrentPage("1")
       updateURL({ ...url, name: value })
     }
 
-    const onChangeStatus = (value: string) => {
+    const onChangeStatus = (eventTarget: EventTarget | null) => {
+      // @ts-ignore
+      let value = eventTarget.value
       createCounterStore.setStatus(value);
+      createCounterStore.setCurrentPage("1")
       updateURL({ ...url, status: value })
     }
 
@@ -44,8 +50,8 @@ export default {
 
 <template>
   <div class="filter-form">
-    <input class="inp" @change="onChangeName($event.target.value)" :value="createCounterStore.name" />
-    <select class="selector" @change="onChangeStatus($event.target.value)" :value="createCounterStore.status">
+    <input class="inp" @change="onChangeName($event.target)" :value="createCounterStore.name" />
+    <select class="selector" @change="onChangeStatus($event.target)" :value="createCounterStore.status">
       <option value="Unknown">Unknown</option>
       <option value="Dead">Dead</option>
       <option value="Alive">Alive</option>

@@ -21,7 +21,7 @@ export interface CardItemType {
 
 export interface paginationType {
   count: number;
-  pages: number;
+  pages: string;
   next: string | null;
   prev: string | null;
 }

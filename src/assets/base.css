@@ -39,3 +39,40 @@ a:hover,
 a:focus {
   color: rgb(255, 152, 0);
 }
+
+.pagination-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 25px;
+}
+
+.pagination-btn a {
+  border-radius: 6px;
+  width: 45px;
+  height: 45px;
+  background: white;
+  color: rgb(51, 51, 51);
+  border: 1px solid rgb(51, 51, 51);
+  transition: 0.1s;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination-btn:hover a,
+.pagination-btn:focus a {
+  border: 1px solid rgb(255, 152, 0);
+  color: rgb(255, 152, 0);
+  cursor: pointer;
+}
+
+.pagination-active a,
+.pagination-active:hover a,
+.pagination-active:focus a {
+  border: 1px solid rgb(255, 152, 0);
+  background: rgb(255, 152, 0);
+  color: #fff;
+}

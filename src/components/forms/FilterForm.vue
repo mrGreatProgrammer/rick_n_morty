@@ -13,7 +13,6 @@ export default {
       // @ts-ignore
       let value = eventTarget.value
       createCounterStore.setName(value);
-      createCounterStore.setCurrentPage("1")
       updateURL({ ...url, name: value })
     }
 
@@ -21,12 +20,12 @@ export default {
       // @ts-ignore
       let value = eventTarget.value
       createCounterStore.setStatus(value);
-      createCounterStore.setCurrentPage("1")
       updateURL({ ...url, status: value })
-    }
-
-    const onClick = ()=>{
-      createCounterStore.fetchCharacters();
+      }
+      
+      const onClick = ()=>{
+        createCounterStore.fetchCharacters();
+        createCounterStore.setCurrentPage("1")
     }
 
     onMounted(() => {

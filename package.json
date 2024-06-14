@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "homepage": "https://mrgreatprogrammer.github.io/rick_n_morty",
   "scripts": {
     "dev": "vite",
     "predeploy": "npm run build",

@@ -11,7 +11,7 @@
           </path>
         </svg></a>
       <ul class="header__List">
-        <li><a name="/about" class="header__Link nav-item__primary" href="/about">About</a></li>
+        <li><a name="/about" class="header__Link nav-item__primary" href="/rick_n_morty/about">About</a></li>
       </ul>
     </nav>
   </header>

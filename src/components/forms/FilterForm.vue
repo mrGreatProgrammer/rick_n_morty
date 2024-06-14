@@ -55,7 +55,7 @@ export default {
       <option value="Dead">Dead</option>
       <option value="Alive">Alive</option>
     </select>
-    <button class="btn" @click="onClick" >FILTER</button>
+    <button class="btn" @click="onClick" >Применить</button>
   </div>
 </template>
 

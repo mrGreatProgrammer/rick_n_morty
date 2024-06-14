@@ -14,16 +14,14 @@ const data = defineProps({
   <article class="characterCard__Wrapper">
     <div class="characterCard__ImgWrapper"><img :src="data.card.image" alt="Ghost in a Jar" /></div>
     <div class="characterCard__ContentWrapper">
-      <div class="section"><a href="data.card.url" rel="noopener noreferrer"
-          target="_blank" class="externalLink__ExternalLink">
+      <div class="section"><div 
+           class="externalLink__ExternalLink">
           <h2>{{ data.card.name }} fa</h2>
-        </a><span class="status"><span class="status__icon"></span> {{ data.card.status }} - {{data.card.species}}</span></div>
-      <div class="section"><span class="text-gray">Last known location:</span><a
-          href="data.card.location.url" rel="noopener noreferrer" target="_blank"
-          class="externalLink__ExternalLink">{{data.card.location?.name}}</a></div>
-      <div class="section"><span class="text-gray">First seen in:</span><a
-          href="data.card.origin.url" rel="noopener noreferrer" target="_blank"
-          class="externalLink__ExternalLink">{{data.card.origin?.name}}</a></div>
+        </div><span class="status"><span class="status__icon"></span> {{ data.card.status }} - {{data.card.species}}</span></div>
+      <div class="section"><span class="text-gray">Last known location:</span><div
+          class="externalLink__ExternalLink">{{data.card.location?.name}}</div></div>
+      <div class="section"><span class="text-gray">First seen in:</span><div
+          class="externalLink__ExternalLink">{{data.card.origin?.name}}</div></div>
     </div>
   </article>
 </template>
